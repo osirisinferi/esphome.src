@@ -117,7 +117,10 @@ void WaveshareEPaperBase::cmd_data(const uint8_t *c_data, size_t length) {
   this->enable();
   this->write_byte(c_data[0]);
   this->dc_pin_->digital_write(true);
-  this->write_array(c_data + 1, length - 1);
+  //this->write_array(c_data + 1, length - 1);
+  uint8_t temp[length - 1];
+  memcpy(temp, c_data + 1, length - 1);
+  this->write_array(temp, length - 1);
   this->disable();
 }
 
